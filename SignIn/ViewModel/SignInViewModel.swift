@@ -9,9 +9,9 @@ import SwiftUI
 import Combine
 
 class SignInViewModel: ObservableObject {
-    
-    @Published var email = ""
-    @Published var password = ""
+  
+  @Published var email = ""
+  @Published var password = ""
   
   private var cancellable: AnyCancellable?
   
@@ -36,11 +36,23 @@ class SignInViewModel: ObservableObject {
   func login() {
     self.uiState = .loading
     
-    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-      self.uiState = .goToHomeScreen
+    WebService.login(request: SignInRequest(email: email,
+                                            password: password)) { (successResponse, errorResponse) in
+      
+  if let error = errorResponse {
+    DispatchQueue.main.async {
+      // Main Thread
+        self.uiState = .error(error.detail.message)
+        }
+      }
+      if let success = successResponse {
+        DispatchQueue.main.async {
+          print(success)
+          self.uiState = .goToHomeScreen
+        }
+      }
     }
   }
-  
 }
 
 extension SignInViewModel {

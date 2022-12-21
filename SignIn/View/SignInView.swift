@@ -101,7 +101,8 @@ extension SignInView {
                 text:"Entrar",
            showProgress: self.viewModel.uiState ==
                     SignInUIState.loading,
-                          disabled: !viewModel.email.isEmail() || viewModel.password.count < 8)
+                          disabled: !viewModel.email.isEmail() ||
+                          viewModel.password.count < 8)
     }
 }
 

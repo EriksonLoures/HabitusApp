@@ -24,7 +24,7 @@ struct LoadingButtonView: View {
                     .padding(.vertical, 14)
                     .padding(.horizontal, 16)
                     .font(Font.system(.title3).bold())
-                    .background(disabled ? Color("lightBlue") : Color.blue)
+                    .background(disabled ? Color("lightGray") : Color.gray)
                     .foregroundColor(.white)
                     .cornerRadius(4.0)
             }).disabled(disabled || showProgress)
