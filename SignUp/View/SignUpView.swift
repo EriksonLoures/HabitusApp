@@ -50,7 +50,7 @@ struct SignUpView: View {
       if case SignUpUIState.error(let value) = viewModel.uiState {
         Text("")
           .alert(isPresented: .constant(true)) {
-            Alert(title: Text("Habit"), message: Text(value), dismissButton: .default(Text("Ok")) {
+            Alert(title: Text("Habitus"), message: Text(value), dismissButton: .default(Text("Ok")) {
               // faz algo quando some o alerta
             })
           }
