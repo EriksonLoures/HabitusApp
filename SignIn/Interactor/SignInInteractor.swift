@@ -6,15 +6,21 @@
 //
 
 import SwiftUI
+import Combine
 
-struct SignInInteractor: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
+class SignInInteractor {
+    
+    private let remote: SignInRemoteDataSource = .shared
+    private let local: LocalDataSource = .shared
+    
 }
 
-struct SignInInteractor_Previews: PreviewProvider {
-    static var previews: some View {
-        SignInInteractor()
+extension SignInInteractor {
+    func login(loginRequest request: SignInRequest) -> Future<SignInResponse, AppError> {
+      return remote.login(request: request)
+        
+    }
+    func insertAuth(userAuth: UserAuth) {
+        local.insertUserAuth(userAuth: userAuth)
     }
 }
