@@ -9,22 +9,22 @@ import SwiftUI
 
 struct SplashView: View {
     
-    @ObservedObject var ViewModel: SplashViewModel
+    @ObservedObject var viewModel: SplashViewModel
     
     var body: some View {
         Group {
-            switch ViewModel.uiState {
+            switch viewModel.uiState {
             case .loading:
             loadingView()
             case .goToSignInScreen:
                 //navega para proxima tela
-                ViewModel.signInView()
+                viewModel.signInView()
             case .goToHomeScreen:
-                Text("tela principal")
+                viewModel.homeView()
             case .error(let msg):
                 Text("\(msg)")
             }
-        }.onAppear(perform: ViewModel.onAppear)
+        }.onAppear(perform: viewModel.onAppear)
     }
 }
 
@@ -47,7 +47,7 @@ struct SplashView_Previews: PreviewProvider {
     static var previews: some View {
         ForEach(ColorScheme.allCases, id: \.self) {
             let viewModel = SplashViewModel(interactor: SplashInteractor())
-            SplashView(ViewModel: viewModel)
+            SplashView(viewModel: viewModel)
             .previewDevice("iPhone 11")
             .preferredColorScheme($0)
     }
