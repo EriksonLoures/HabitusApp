@@ -15,17 +15,31 @@ struct HabitusView: View {
             if case HabitusUIState.loading = viewModel.uiState {
                 progress
             } else {
-                ScrollView(showsIndicators: false) {
-                    VStack {
+                
+    NavigationView {
+        ScrollView(showsIndicators: false) {
+            // espacamento do botao criar
+            VStack(spacing: 80){
+                
                 topContainer
-                        
                
-
+                addButton
                 if case HabitusUIState.emptyList = viewModel.uiState {
+                    // espacamento do alerta 
+//                    Spacer(minLength: 10)
+                    
+                    VStack {
+                        Image(systemName: "exclamationmark.octagon.fill")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 30, height: 30, alignment: .center)
+                        Text("Nenhum Habitus encontrado")
+                    }
                     
                 } else if case HabitusUIState.fullList = viewModel.uiState {
                     
                 } else if case HabitusUIState.error = viewModel.uiState {
+              }
             }
           }
         }
@@ -59,11 +73,35 @@ extension HabitusView {
                 .foregroundColor(Color("textColor"))
         }
         .frame(maxWidth: .infinity)
+        .padding(.vertical, 32)
+        .overlay(
+            RoundedRectangle(cornerRadius: 15)
+                .stroke(Color.gray, lineWidth: 10)
+        )
+        .padding(.horizontal, 20)
+        .padding(.top, 20)
+    }
+}
+
+extension HabitusView {
+    
+    var addButton: some View {
+        NavigationLink(destination: Text("Tela e adicionar")
+            .frame(maxWidth: .infinity)) {
+            Label("Criar Hábitus", systemImage: "plus.app")
+            .modifier(ButtonStyle())
+        }
+            .padding(.horizontal, 16)
+        
     }
 }
 
 struct HabitusView_Previws: PreviewProvider {
     static var previews: some View {
-        HomeViewRouter.makeHabitusView()
+        ForEach (ColorScheme.allCases, id: \.self) {
+            HomeViewRouter.makeHabitusView()
+                .previewDevice ("")
+                .preferredColorScheme ($0)
+        }
     }
 }

@@ -119,6 +119,7 @@ extension SignInView {
                 tag: 1,
                 selection: $action,
                 label: { EmptyView () })
+            
             Button ("Cadastre-se agora") {
                 self.action = 1
                 }
