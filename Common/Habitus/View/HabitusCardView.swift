@@ -27,21 +27,21 @@ struct HabitusCardView: View {
         
             HStack {
         Image(systemName: "square.and.pencil")
-        .padding(.horizontal, 9)
+        .padding(.horizontal, 5)
                 
-        Spacer()
+//        Spacer()
                 
             HStack (alignment: .top) {
                 Spacer()
             VStack(alignment: .leading, spacing: 4) {
                 
         Text (viewModel.name)
-            .foregroundColor (Color.blue)
+//            .foregroundColor (Color.blue)
         Text (viewModel.label)
-            .foregroundColor (Color ("textColor"))
+//            .foregroundColor (Color ("textColor"))
         .bold()
         Text (viewModel.date)
-            .foregroundColor(Color ("textColor" ))
+//            .foregroundColor(Color ("textColor" ))
         .bold()
                 
                     
@@ -50,14 +50,14 @@ struct HabitusCardView: View {
                 Spacer()
                 
             VStack(alignment: .leading, spacing: 4) {
-                Text("Registrado")
-                .foregroundColor(Color.blue)
+                Text("")
+//                .foregroundColor(Color.blue)
                 .bold()
                 //multiline sempre depois ou em baixo do bold
                 .multilineTextAlignment(.leading)
                 
                 Text(viewModel.value)
-                .foregroundColor(Color("textColor"))
+//                .foregroundColor(Color("textColor"))
                 .bold()
                 //multiline sempre depois ou em baixo do bold
                 .multilineTextAlignment(.leading)
@@ -65,26 +65,26 @@ struct HabitusCardView: View {
                 
                 
             }
-                Spacer()
+//                Spacer()
           }
-                Spacer()
+//                Spacer()
         }
-            .padding()
-            .cornerRadius(4.0)
+//            .padding()
+//            .cornerRadius(4.0)
       })
         Rectangle()
-        .frame(width: 8)
+        .frame(width: 4)
         .foregroundColor(viewModel.state)
             
             
     }.background(
-        RoundedRectangle(cornerRadius: 4.0)
-            .stroke(Color.blue, lineWidth: 1.4)
-            .shadow (color: .blue, radius: 2, x: 2.0, y: 2.0)
+        RoundedRectangle(cornerRadius: 0.0)
+            .stroke(Color.blue, lineWidth: 0.0)
+            .shadow (color: .blue, radius: 1, x: 2.0, y: 2.0)
     )
-    .padding(.horizontal, 3)
-    .padding(.top, 8)
-    .padding()
+    .padding(.horizontal, -20)
+    .padding(.top, 1)
+//    .padding()
   }
 }
 
@@ -99,8 +99,8 @@ struct HabitusCardView_Previews: PreviewProvider {
                                                    icon: "https://via.placeholder.com/150",
                                                    date: "01/01/2023 00:00:00",
                                                    name: "Estudar Swift",
-                                                  label: "horas",
-                                                  value: "2",
+                                                  label: "",
+                                                  value: "",
                                                   state: .blue))
            // Spacer()
             HabitusCardView(viewModel:
@@ -108,8 +108,8 @@ struct HabitusCardView_Previews: PreviewProvider {
                                                    icon: "https://via.placeholder.com/150",
                                                    date: "01/01/2023 00:00:00",
                                                    name: "Estudar C#",
-                                                  label: "horas",
-                                                  value: "2",
+                                                  label: "",
+                                                  value: "",
                                                   state: .blue))
             // Spacer()
             HabitusCardView(viewModel:
@@ -117,8 +117,8 @@ struct HabitusCardView_Previews: PreviewProvider {
                                                    icon: "https://via.placeholder.com/150",
                                                    date: "01/01/2023 00:00:00",
                                                    name: "Estudar Bando de Dados",
-                                                  label: "horas",
-                                                  value: "2",
+                                                  label: "",
+                                                  value: "",
                                                   state: .blue))
 //            Spacer()
 //            HabitusCardView(viewModel:

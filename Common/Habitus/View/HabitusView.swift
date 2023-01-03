@@ -19,7 +19,8 @@ struct HabitusView: View {
     NavigationView {
         ScrollView(showsIndicators: false) {
             // espacamento do botao criar
-            VStack(spacing: 80){
+            VStack(spacing: 30){
+//                
                 
                 topContainer
                
@@ -32,11 +33,16 @@ struct HabitusView: View {
                         Image(systemName: "exclamationmark.octagon.fill")
                             .resizable()
                             .scaledToFit()
-                            .frame(width: 30, height: 30, alignment: .center)
+                            .frame(width: 40, height: 30, alignment: .center)
                         Text("Nenhum Habitus encontrado")
                     }
                     
-                } else if case HabitusUIState.fullList = viewModel.uiState {
+                } else if case HabitusUIState.fullList(let rows) = viewModel.uiState {
+                    
+                    LazyVStack {
+                    
+                    ForEach(rows, content: HabitusCardView.init(viewModel:))
+                    }.padding(.horizontal)
                     
                 } else if case HabitusUIState.error = viewModel.uiState {
               }
@@ -44,7 +50,9 @@ struct HabitusView: View {
           }
         }
       }
-    }
+        }.onAppear {
+            viewModel.onAppear()
+        }
   }
 }
 
@@ -73,13 +81,13 @@ extension HabitusView {
                 .foregroundColor(Color("textColor"))
         }
         .frame(maxWidth: .infinity)
-        .padding(.vertical, 32)
+        .padding(.vertical, 20)
         .overlay(
             RoundedRectangle(cornerRadius: 15)
                 .stroke(Color.gray, lineWidth: 10)
         )
-        .padding(.horizontal, 20)
-        .padding(.top, 20)
+        .padding(.horizontal, 16)
+        .padding(.top, 6)
     }
 }
 
@@ -91,7 +99,7 @@ extension HabitusView {
             Label("Criar Hábitus", systemImage: "plus.app")
             .modifier(ButtonStyle())
         }
-            .padding(.horizontal, 16)
+            .padding(.horizontal, 2)
         
     }
 }

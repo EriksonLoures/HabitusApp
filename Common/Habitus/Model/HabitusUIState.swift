@@ -10,6 +10,6 @@ import Foundation
 enum HabitusUIState: Equatable {
     case loading
     case emptyList
-    case fullList
+    case fullList([HabitusCardViewModel])
     case error (String)
 }
