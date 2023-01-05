@@ -62,7 +62,7 @@ class HabitusViewModel: ObservableObject {
                                           value: "",
                                           state: .blue))
 //            self.uiState = .fullList(rows)
-            self .uiState = .error("falha interna no servidor")
+            self.uiState = .error("falha interna no servidor")
         }
     }
 }

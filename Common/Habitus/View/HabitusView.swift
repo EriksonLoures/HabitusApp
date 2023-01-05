@@ -16,6 +16,7 @@ struct HabitusView: View {
     ZStack {
       if case HabitusUIState.loading = viewModel.uiState {
         progress
+          
       } else {
         
         NavigationView {
@@ -29,15 +30,15 @@ struct HabitusView: View {
          
               if case HabitusUIState.emptyList = viewModel.uiState {
                 
-                Spacer(minLength: 80)
+                Spacer(minLength: 60)
                 
                 VStack {
                   Image(systemName: "exclamationmark.octagon.fill")
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 24, height: 22, alignment: .center)
+                    .frame(width: 24, height: 24, alignment: .center)
                   
-                  Text("Nenhum hábito encontrado")
+                  Text("Nenhum hábito encontrado :(")
                 }
                 
               } else if case HabitusUIState.fullList(let rows) = viewModel.uiState {
@@ -46,26 +47,16 @@ struct HabitusView: View {
                   
                   ForEach(rows, content: HabitusCardView.init(viewModel:))
                   
-                }.padding(.horizontal, 5)
+                }.padding(.horizontal, 14)
                 
-              } else if case HabitusUIState.error(let msg) = viewModel.uiState {
-                  Text("")
-                      .alert(isPresented: .constant(true)) {
-                  Alert(
-                    title: Text("Ops! \(msg)"),
-                    message: Text("Tentar novamente"),
-                    primaryButton: .default(Text ("Sim")) {
-                        // aqui ele fará uma nova tentativa
-                    },
-                    secondaryButton: .cancel()
-                  )
-                }
-              }
-            }
-          }.navigationTitle("Meus Hábitos")
-          
+              } else if case HabitusUIState.error = viewModel.uiState {
+                  
+          }
         }
-      }
+      }.navigationTitle("Meus Hábitos")
+          
+    }
+  }
 
     }.onAppear {
       viewModel.onAppear()
@@ -89,8 +80,7 @@ extension HabitusView {
       
       Text(viewModel.title)
         .font(Font.system(.title).bold())
-        // texto atencao
-        .foregroundColor(Color.red)
+        .foregroundColor(Color.orange)
       
       Text(viewModel.headline)
         .font(Font.system(.title3).bold())
@@ -104,7 +94,7 @@ extension HabitusView {
     .padding(.vertical, 32)
     .overlay(
       RoundedRectangle(cornerRadius: 6)
-        .stroke(Color.blue, lineWidth: 1)
+        .stroke(Color.gray, lineWidth: 1)
     )
     .padding(.horizontal, 16)
     .padding(.top, 16)
